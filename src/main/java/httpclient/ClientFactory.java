@@ -100,7 +100,6 @@ public class ClientFactory {
                                                            .build();
 
                     final HttpResponse response = request.execute();
-                    System.out.println(response.getData());
                     return gson.fromJson(response.getData(), method.getReturnType());
                 }
         );

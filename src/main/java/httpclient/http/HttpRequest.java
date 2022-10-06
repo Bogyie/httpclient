@@ -51,6 +51,7 @@ public final class HttpRequest {
 
         // body
         if ((method == HttpMethod.POST || method == HttpMethod.PUT) && !body.isEmpty()) {
+            conn.setDoOutput(true);
             try (OutputStream os = conn.getOutputStream()) {
                 final byte[] bytes = body.getBytes(StandardCharsets.UTF_8);
                 os.write(bytes);
