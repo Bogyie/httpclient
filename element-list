@@ -1,0 +1,4 @@
+httpclient
+httpclient.annotation.method
+httpclient.annotation.parameter
+httpclient.http

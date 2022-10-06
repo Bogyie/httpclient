@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"httpclient"},{"l":"httpclient.annotation.method"},{"l":"httpclient.annotation.parameter"},{"l":"httpclient.http"}]
