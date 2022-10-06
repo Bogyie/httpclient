@@ -28,6 +28,14 @@ import httpclient.annotation.parameter.Query;
 
 class ClientFactoryTest {
 
+    static class Dto {
+        Integer put;
+
+        Dto(Integer put) {
+            this.put = put;
+        }
+    }
+
     interface TestClient {
 
         @GET("/get")
@@ -37,7 +45,7 @@ class ClientFactoryTest {
         List<String> post(@Body(String.class) String body);
 
         @PUT("/put")
-        Map<String, Double> put(@Header("header") String header);
+        Dto put(@Header("header") String header);
     }
 
     private static Server server;
@@ -49,7 +57,7 @@ class ClientFactoryTest {
                        .http(8080)
                        .service("/get", (ctx, req) -> HttpResponse.of("get"))
                        .service("/post", (ctx, req) -> HttpResponse.of("[\"post\"]"))
-                       .service("/put", (ctx, req) -> HttpResponse.of("{\"put\":0.0}"))
+                       .service("/put", (ctx, req) -> HttpResponse.of("{\"put\":0}"))
                        .build();
 
         server.closeOnJvmShutdown();
@@ -93,9 +101,9 @@ class ClientFactoryTest {
     void put() {
 
         // when
-        final Map<String, Double> result = client.put("put");
+        final Dto result = client.put("put");
 
         // then
-        assertEquals(result, Collections.singletonMap("put", 0.0));
+        assertEquals(result.put, 0);
     }
 }
